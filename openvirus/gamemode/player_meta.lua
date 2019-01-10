@@ -1,6 +1,6 @@
 -- Player meta stuff
 local meta = FindMetaTable( "Player" )
-if ( !meta ) then return end
+if ( !meta ) then return; end
 
 AddCSLuaFile()
 

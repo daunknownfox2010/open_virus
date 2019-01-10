@@ -70,7 +70,7 @@ end
 -- Client has sent us information that they want to infect someone
 function ClientsideInfect( len, ply )
 
-	if ( !IsRoundState( ROUNDSTATE_INROUND ) && !IsRoundState( ROUNDSTATE_LASTSURVIVOR ) ) then return end
+	if ( !IsRoundState( ROUNDSTATE_INROUND ) && !IsRoundState( ROUNDSTATE_LASTSURVIVOR ) ) then return; end
 
 	local target_ply = net.ReadEntity()
 	if ( IsValid( ply ) && ply:Alive() && ply:IsInfected() && ply:GetInfectionStatus() && IsValid( target_ply ) && target_ply:IsPlayer() && target_ply:Alive() && target_ply:IsSurvivor() ) then

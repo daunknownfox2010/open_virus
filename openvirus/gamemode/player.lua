@@ -317,6 +317,14 @@ function GM:PlayerLoadout( ply )
 end
 
 
+-- Is the spawnpoint suitable
+function GM:IsSpawnpointSuitable()
+
+	return true
+
+end
+
+
 -- Should the player play the death sound
 function GM:PlayerDeathSound()
 

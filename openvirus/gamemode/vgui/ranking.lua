@@ -68,14 +68,14 @@ local RANKING_PANEL = {
 				draw.RoundedBox( ControlledScreenScale( 4 ), 0, 0, w, h, Color( hudColor.r, hudColor.g, hudColor.b, 200 ) )
 			
 				local rankAlpha = ( ( 0.5 - math.Clamp( storedFragsTime - CurTime(), 0, 0.5 ) ) / 0.5 ) * 255
-				draw.SimpleTextOutlined( "RANK", "RankingDefault", w / 2, h - ControlledScreenScale( 4 ), Color( 255, 255, 255, rankAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, ControlledScreenScale( 1 ), Color( 0, 0, 0, rankAlpha ) )
-				draw.SimpleTextOutlined( localPlayerRank, "RankingDisplayDefault", w / 2, h - ControlledScreenScale( 16 ), Color( 255, 255, 255, rankAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, ControlledScreenScale( 1 ), Color( 0, 0, 0, rankAlpha ) )
+				draw.SimpleTextOutlined( "RANK", "RankingDefault", w / 2, h - ControlledScreenScale( 4 ), Color( 255, 255, 255, rankAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, rankAlpha ) )
+				draw.SimpleTextOutlined( localPlayerRank, "RankingDisplayDefault", w / 2, h - ControlledScreenScale( 16 ), Color( 255, 255, 255, rankAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, rankAlpha ) )
 			
 				if ( storedFragsTime >= CurTime() ) then
 				
 					local fragsAlpha = ( math.Clamp( storedFragsTime - CurTime(), 0, 0.5 ) / 0.5 ) * 255
-					draw.SimpleTextOutlined( "SCORE", "RankingDefault", w / 2, h - ControlledScreenScale( 4 ), Color( 255, 255, 255, fragsAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, ControlledScreenScale( 1 ), Color( 0, 0, 0, fragsAlpha ) )
-					draw.SimpleTextOutlined( storedFrags, "RankingDisplayDefault", w / 2, h - ControlledScreenScale( 16 ), Color( 255, 255, 255, fragsAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, ControlledScreenScale( 1 ), Color( 0, 0, 0, fragsAlpha ) )
+					draw.SimpleTextOutlined( "SCORE", "RankingDefault", w / 2, h - ControlledScreenScale( 4 ), Color( 255, 255, 255, fragsAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, fragsAlpha ) )
+					draw.SimpleTextOutlined( storedFrags, "RankingDisplayDefault", w / 2, h - ControlledScreenScale( 16 ), Color( 255, 255, 255, fragsAlpha ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, fragsAlpha ) )
 				
 				end
 			

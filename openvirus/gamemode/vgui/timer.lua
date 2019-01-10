@@ -60,8 +60,8 @@ local TIMER_PANEL = {
 			draw.RoundedBox( ControlledScreenScale( 4 ), 0, 0, w, h, Color( hudColor.r, hudColor.g, hudColor.b, 200 ) )
 		
 			-- Draw the text
-			draw.SimpleTextOutlined( "TIME LEFT", "TimerDefault", w / 2, ControlledScreenScale( 4 ), Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, ControlledScreenScale( 1 ), Color( 0, 0, 0, 255 ) )
-			draw.SimpleTextOutlined( math.Round( GetCurrentRoundTime() ), "TimerDefaultTime", w / 2, ControlledScreenScale( 17 ), Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, ControlledScreenScale( 1 ), Color( 0, 0, 0, 255 ) )
+			draw.SimpleTextOutlined( "TIME LEFT", "TimerDefault", w / 2, ControlledScreenScale( 4 ), Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, 255 ) )
+			draw.SimpleTextOutlined( math.Round( GetCurrentRoundTime() ), "TimerDefaultTime", w / 2, ControlledScreenScale( 17 ), Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, math.floor( ControlledScreenScale( 1 ) ), Color( 0, 0, 0, 255 ) )
 		
 		end
 	

@@ -110,27 +110,6 @@ local infectedFlameFrame = 0
 local infectedFlameFrameUpdate = 0
 function GM:Think()
 
-	-- Check for players around us to infect
-	if ( IsValid( LocalPlayer() ) && LocalPlayer():Alive() && LocalPlayer():IsInfected() && LocalPlayer():GetInfectionStatus() ) then
-	
-		local traceData = { start = LocalPlayer():GetPos(), endpos = LocalPlayer():GetPos(), filter = LocalPlayer() }
-		local trace = util.TraceEntity( traceData, LocalPlayer() )
-	
-		if ( trace.Hit ) then
-		
-			local ent = trace.Entity
-			if ( IsValid( ent ) && ent:IsPlayer() && ent:Alive() && ent:IsSurvivor() ) then
-			
-				net.Start( "ClientsideInfect" )
-					net.WriteEntity( ent )
-				net.SendToServer()
-			
-			end
-		
-		end
-	
-	end
-
 	-- Update infected flame frames
 	if ( infectedFlameFrameUpdate < CurTime() ) then
 	
@@ -186,6 +165,27 @@ local countdownText = {}
 local countdownTimerStored = 0
 local informationText = {}
 function GM:Tick()
+
+	-- Check for players around us to infect
+	if ( IsValid( LocalPlayer() ) && LocalPlayer():Alive() && LocalPlayer():IsInfected() && LocalPlayer():GetInfectionStatus() ) then
+	
+		local traceData = { start = LocalPlayer():GetPos(), endpos = LocalPlayer():GetPos(), filter = team.GetPlayers( TEAM_INFECTED ) }
+		local trace = util.TraceEntity( traceData, LocalPlayer() )
+	
+		if ( trace.Hit ) then
+		
+			local ent = trace.Entity
+			if ( IsValid( ent ) && ent:IsPlayer() && ent:Alive() && ent:IsSurvivor() ) then
+			
+				net.Start( "ClientsideInfect" )
+					net.WriteEntity( ent )
+				net.SendToServer()
+			
+			end
+		
+		end
+	
+	end
 
 	-- Lerp calculation for Countdown Text and avoid frame stuff
 	for k, v in pairs( countdownText ) do
@@ -355,14 +355,6 @@ function GM:HUDPaint()
 
 	-- If cl_drawhud is 0 or we are spectator
 	if ( !GetConVar( "cl_drawhud" ):GetBool() ) then return; end
-
-	-- Colour depending on team
-	local hudColor = Color( 0, 0, 100 )
-	if ( LocalPlayer():IsInfected() ) then
-	
-		hudColor = Color( 0, 100, 0 )
-	
-	end
 
 	-- Draw a text for WFP session
 	if ( IsRoundState( ROUNDSTATE_WAITING ) ) then

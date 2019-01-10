@@ -14,6 +14,7 @@ SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.Charge = 0
 SWEP.Primary.ChargeSlowdown = false
+SWEP.Primary.ChargeUpdate = 0
 
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
@@ -49,7 +50,7 @@ function SWEP:PrimaryAttack()
 
 	if ( self.Primary.Charge < 100 ) then
 	
-		if ( IsFirstTimePredicted() ) then self.Primary.Charge = self.Primary.Charge + 4 end
+		if ( IsFirstTimePredicted() ) then self.Primary.Charge = self.Primary.Charge + 5; end
 	
 		if ( !self.Primary.ChargeSlowdown && ( self.Primary.Charge > 75 ) ) then
 		
@@ -72,7 +73,7 @@ function SWEP:PrimaryAttack()
 
 	self.Owner:ViewPunch( Angle( -0.25, 0, 0 ) )
 
-	self:SetNextPrimaryFire( CurTime() + math.Clamp( self.Primary.Charge / 100, 0.125, 1 ) )
+	self:SetNextPrimaryFire( CurTime() + math.Clamp( self.Primary.Charge / 100, 0.125, 0.75 ) )
 
 end
 
@@ -93,9 +94,14 @@ function SWEP:Think()
 	
 		if ( !self.Owner:KeyDown( IN_ATTACK ) ) then
 		
-			if ( ( ( self:GetNextPrimaryFire() + 1 ) < CurTime() ) && ( self.Primary.Charge > 0 ) ) then
+			if ( ( ( self:GetNextPrimaryFire() + 1 ) < CurTime() ) && ( self.Primary.Charge > 0 ) && ( self.Primary.ChargeUpdate < CurTime() ) ) then
 			
-				if ( IsFirstTimePredicted() ) then self.Primary.Charge = self.Primary.Charge - 0.5 end
+				if ( IsFirstTimePredicted() ) then
+				
+					self.Primary.ChargeUpdate = CurTime() + 0.01
+					self.Primary.Charge = self.Primary.Charge - ( 0.5 / ( 1 / engine.TickInterval() / 100 ) )
+				
+				end
 			
 				if ( self.Primary.ChargeSlowdown && ( self.Primary.Charge < 25 ) ) then
 				
