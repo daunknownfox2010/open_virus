@@ -2,7 +2,6 @@
 
 include( "cl_earlyfunctions.lua" )
 include( "cl_killicons.lua" )
-include( "cl_language.lua" )
 include( "cl_materials.lua" )
 include( "cl_music.lua" )
 include( "cl_scoreboard.lua" )
