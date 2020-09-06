@@ -5,7 +5,6 @@ include( "player.lua" )
 
 AddCSLuaFile( "cl_earlyfunctions.lua" )
 AddCSLuaFile( "cl_killicons.lua" )
-AddCSLuaFile( "cl_language.lua" )
 AddCSLuaFile( "cl_materials.lua" )
 AddCSLuaFile( "cl_music.lua" )
 AddCSLuaFile( "cl_scoreboard.lua" )
